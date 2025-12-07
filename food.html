@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character encoding and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Tadka - Authentic Indian Cuisine</title>
+    
+    <!-- Google Fonts - Using Pacifico for logo and Playfair Display for headings -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           GLOBAL STYLES & RESET
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styles - sets the base font and background color */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #faf9f7; /* Warm, light background */
+        }
+
+        /* ============================================
+           HEADER & NAVIGATION
+           ============================================ */
+        header {
+            background: linear-gradient(135deg, #8B4513, #A0522D); /* Brown gradient */
+            color: white;
+            padding: 1rem 0;
+            position: sticky; /* Header stays at top when scrolling */
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo styling with decorative font */
+        .logo {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.2rem;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            font-weight: bold;
+        }
+
+        /* Navigation menu list */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        /* Navigation links */
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        /* Hover effect on navigation links */
+        nav a:hover {
+            color: #F4A460; /* Sandy brown on hover */
+        }
+
+        /* ============================================
+           HERO SECTION (Main Banner)
+           ============================================ */
+        .hero {
+            /* Background image with dark overlay for text readability */
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=1200&h=600&fit=crop') center/cover;
+            color: white;
+            text-align: center;
+            padding: 150px 20px;
+            position: relative;
+        }
+
+        /* Hero heading */
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+            color: #fff;
+        }
+
+        /* Hero paragraph text */
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        /* ============================================
+           CONTAINER & SECTIONS
+           ============================================ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        /* Section headings */
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #8B4513; /* Brown color */
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ============================================
+           MENU SECTION
+           ============================================ */
+        /* Grid layout for menu items */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        /* Individual menu item card */
+        .menu-item {
+            background: #fff;
+            padding: 0;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            overflow: hidden;
+            border: 1px solid #e8e6e3;
+        }
+
+        /* Hover effect on menu items */
+        .menu-item:hover {
+            transform: translateY(-5px); /* Lifts card up */
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            border-color: #D2691E;
+        }
+
+        /* Menu item images */
+        .menu-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover; /* Ensures image covers entire area */
+            display: block;
+            background: #f5f3f0; /* Fallback background color */
+        }
+
+        /* Menu item content area */
+        .menu-content {
+            padding: 25px;
+        }
+
+        /* Menu item title */
+        .menu-item h3 {
+            color: #8B4513;
+            margin-bottom: 10px;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        /* Price styling */
+        .menu-item .price {
+            color: #A0522D;
+            font-weight: bold;
+            font-size: 1.3rem;
+            float: right;
+            background: #faf9f7;
+            padding: 5px 12px;
+            border-radius: 15px;
+        }
+
+        /* Menu item description */
+        .menu-item p {
+            margin-top: 10px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           RESERVATION FORM
+           ============================================ */
+        .reservation-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e8e6e3;
+        }
+
+        /* Form group spacing */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        /* Form labels */
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #8B4513;
+            font-weight: 600;
+        }
+
+        /* Form inputs */
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+            background: #fff;
+        }
+
+        /* Focus state for form inputs */
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #A0522D;
+            box-shadow: 0 0 0 3px rgba(160,82,45,0.1);
+        }
+
+        /* Textarea specific styling */
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Submit button */
+        button {
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(139,69,19,0.2);
+        }
+
+        /* Button hover effect */
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139,69,19,0.3);
+            background: linear-gradient(135deg, #A0522D, #8B4513);
+        }
+
+        /* Success message after form submission */
+        .success-message {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+            box-shadow: 0 3px 10px rgba(39,174,96,0.2);
+        }
+
+        /* ============================================
+           REVIEWS SECTION
+           ============================================ */
+        /* Grid layout for reviews */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        /* Individual review card */
+        .review {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+            border-left: 4px solid #D2691E; /* Accent border */
+            transition: transform 0.3s;
+            border: 1px solid #e8e6e3;
+        }
+
+        /* Hover effect on reviews */
+        .review:hover {
+            transform: translateX(5px); /* Slides card to the right */
+        }
+
+        /* Review header containing name and rating */
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        /* Customer name */
+        .review-name {
+            font-weight: bold;
+            color: #8B4513;
+            font-size: 1.2rem;
+        }
+
+        /* Star rating */
+        .review-rating {
+            color: #D2691E;
+            font-size: 1.3rem;
+        }
+
+        /* Review text content */
+        .review-text {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN (Mobile)
+           ============================================ */
+        @media (max-width: 768px) {
+            /* Stack navigation items vertically on mobile */
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            /* Reduce hero heading size */
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            /* Reduce hero paragraph size */
+            .hero p {
+                font-size: 1rem;
+            }
+
+            /* Reduce section heading size */
+            h2 {
+                font-size: 2rem;
+            }
+
+            /* Smaller logo on mobile */
+            .logo {
+                font-size: 1.6rem;
+            }
+
+            /* Single column menu grid on mobile */
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================
+         HEADER & NAVIGATION
+         ============================================ -->
+    <header>
+        <nav>
+            <!-- Restaurant Logo -->
+            <div class="logo">🍛 Cafe Tadka</div>
+            
+            <!-- Navigation Menu -->
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#reservation">Reservations</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ============================================
+         HERO SECTION (Main Banner)
+         ============================================ -->
+    <section id="home" class="hero">
+        <h1>Welcome to Cafe Tadka</h1>
+        <p>Authentic Indian Cuisine in the Heart of the City</p>
+        <p>Experience the finest flavors with aromatic spices and traditional recipes</p>
+    </section>
+
+    <!-- ============================================
+         MENU SECTION
+         ============================================ -->
+    <section id="menu" class="container">
+        <h2>Our Menu</h2>
+        <div class="menu-grid">
+            
+            <!-- Menu Item 1: Butter Chicken -->
+            <div class="menu-item">
+                <!-- Image with fallback - if image fails to load, shows SVG placeholder -->
+                <img src="butter.jpg" 
+                     alt="Butter Chicken" 
+                     class="menu-img" 
+                     loading="lazy"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%23f5f3f0\' width=\'400\' height=\'300\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'24\' fill=\'%238B4513\'%3E🍗 Butter Chicken%3C/text%3E%3C/svg%3E'">
+                <div class="menu-content">
+                    <h3>Butter Chicken <span class="price">₹299</span></h3>
+                    <p>Tender chicken cooked in a rich, creamy tomato-based sauce with aromatic spices</p>
+                </div>
+            </div>
+
+            <!-- Menu Item 2: Paneer Tikka Masala -->
+            <div class="menu-item">
+                <img src="paneer.jpg" 
+                     alt="Paneer Tikka Masala" 
+                     class="menu-img" 
+                     loading="lazy"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%23f5f3f0\' width=\'400\' height=\'300\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'24\' fill=\'%238B4513\'%3E🧀 Paneer Tikka%3C/text%3E%3C/svg%3E'">
+                <div class="menu-content">
+                    <h3>Paneer Tikka Masala <span class="price">₹249</span></h3>
+                    <p>Grilled cottage cheese cubes in a flavorful, creamy curry sauce with spices</p>
+                </div>
+            </div>
+
+            <!-- Menu Item 3: Chicken Biryani -->
+            <div class="menu-item">
+                <img src="Biryani.jpg" 
+                     alt="Chicken Biryani" 
+                     class="menu-img" 
+                     loading="lazy"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%23f5f3f0\' width=\'400\' height=\'300\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'24\' fill=\'%238B4513\'%3E🍚 Biryani%3C/text%3E%3C/svg%3E'">
+                <div class="menu-content">
+                    <h3>Chicken Biryani <span class="price">₹329</span></h3>
+                    <p>Fragrant basmati rice layered with spiced chicken, saffron, and fresh herbs</p>
+                </div>
+            </div>
+
+            <!-- Menu Item 4: Dal Tadka -->
+            <div class="menu-item">
+                <img src="dal tadka.jpg" 
+                     alt="Dal Tadka" 
+                     class="menu-img" 
+                     loading="lazy"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%23f5f3f0\' width=\'400\' height=\'300\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'24\' fill=\'%238B4513\'%3E🍲 Dal Tadka%3C/text%3E%3C/svg%3E'">
+                <div class="menu-content">
+                    <h3>Dal Tadka <span class="price">₹149</span></h3>
+                    <p>Lentils tempered with cumin, garlic, and spices, served with rice or roti</p>
+                </div>
+            </div>
+
+            <!-- Menu Item 5: Chole Bhature -->
+            <div class="menu-item">
+                <img src="Chola bhatura.jpg" 
+                     alt="Chole Bhature" 
+                     class="menu-img" 
+                     loading="lazy"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%23f5f3f0\' width=\'400\' height=\'300\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'24\' fill=\'%238B4513\'%3E🍛 Chole Bhature%3C/text%3E%3C/svg%3E'">
+                <div class="menu-content">
+                    <h3>Chole Bhature <span class="price">₹189</span></h3>
+                    <p>Spicy chickpeas curry served with fluffy deep-fried bread</p>
+                </div>
+            </div>
+
+            <!-- Menu Item 6: Gulab Jamun -->
+            <div class="menu-item">
+                <img src="https://media.istockphoto.com/id/1659939047/photo/lalmohan-or-gulab-jamun.webp?a=1&b=1&s=612x612&w=0&k=20&c=h9mVL-f7yZG5e1sV08Qa5cUK3zP7V-7vu3LxMk21dAQ=" 
+                     alt="Gulab Jamun" 
+                     class="menu-img" 
+                     loading="lazy"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%23f5f3f0\' width=\'400\' height=\'300\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'24\' fill=\'%238B4513\'%3E🍯 Gulab Jamun%3C/text%3E%3C/svg%3E'">
+                <div class="menu-content">
+                    <h3>Gulab Jamun <span class="price">₹99</span></h3>
+                    <p>Sweet milk dumplings soaked in sugar syrup, served warm</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================
+         RESERVATION SECTION
+         ============================================ -->
+    <section id="reservation" class="container">
+        <h2>Make a Reservation</h2>
+        <form id="reservationForm" class="reservation-form">
+            
+            <!-- Name Input Field -->
+            <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <!-- Email Input Field -->
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <!-- Phone Input Field -->
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <!-- Date Input Field -->
+            <div class="form-group">
+                <label for="date">Date *</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <!-- Time Selection Dropdown -->
+            <div class="form-group">
+                <label for="time">Time *</label>
+                <select id="time" name="time" required>
+                    <option value="">Select a time</option>
+                    <option value="17:00">5:00 PM</option>
+                    <option value="17:30">5:30 PM</option>
+                    <option value="18:00">6:00 PM</option>
+                    <option value="18:30">6:30 PM</option>
+                    <option value="19:00">7:00 PM</option>
+                    <option value="19:30">7:30 PM</option>
+                    <option value="20:00">8:00 PM</option>
+                    <option value="20:30">8:30 PM</option>
+                    <option value="21:00">9:00 PM</option>
+                </select>
+            </div>
+
+            <!-- Number of Guests Dropdown -->
+            <div class="form-group">
+                <label for="guests">Number of Guests *</label>
+                <select id="guests" name="guests" required>
+                    <option value="">Select number of guests</option>
+                    <option value="1">1 Guest</option>
+                    <option value="2">2 Guests</option>
+                    <option value="3">3 Guests</option>
+                    <option value="4">4 Guests</option>
+                    <option value="5">5 Guests</option>
+                    <option value="6">6 Guests</option>
+                    <option value="7">7 Guests</option>
+                    <option value="8">8+ Guests</option>
+                </select>
+            </div>
+
+            <!-- Special Requests Textarea -->
+            <div class="form-group">
+                <label for="notes">Special Requests (Optional)</label>
+                <textarea id="notes" name="notes" placeholder="Any dietary restrictions or special occasions?"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit">Book Reservation</button>
+
+            <!-- Success Message (hidden by default, shown after form submission) -->
+            <div id="successMessage" class="success-message">
+                Thank you! Your reservation has been submitted successfully. We'll contact you shortly to confirm.
+            </div>
+        </form>
+    </section>
+
+    <!-- ============================================
+         REVIEWS SECTION
+         ============================================ -->
+    <section id="reviews" class="container">
+        <h2>Customer Reviews</h2>
+        <div class="reviews-grid">
+            
+            <!-- Review 1 -->
+            <div class="review">
+                <div class="review-header">
+                    <div class="review-name">Priya Sharma</div>
+                    <div class="review-rating">★★★★★</div>
+                </div>
+                <div class="review-text">
+                    "Absolutely fantastic dining experience! The butter chicken was perfection, and the service was impeccable. Will definitely be back!"
+                </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="review">
+                <div class="review-header">
+                    <div class="review-name">Rahul Patel</div>
+                    <div class="review-rating">★★★★★</div>
+                </div>
+                <div class="review-text">
+                    "Best Indian restaurant in town! The biryani was authentic and delicious. Great atmosphere and reasonable prices."
+                </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="review">
+                <div class="review-header">
+                    <div class="review-name">Ananya Reddy</div>
+                    <div class="review-rating">★★★★☆</div>
+                </div>
+                <div class="review-text">
+                    "Loved the paneer tikka masala and the gulab jamun was to die for! The only minor issue was the wait time, but it was worth it."
+                </div>
+            </div>
+
+            <!-- Review 4 -->
+            <div class="review">
+                <div class="review-header">
+                    <div class="review-name">Vikram Singh</div>
+                    <div class="review-rating">★★★★★</div>
+                </div>
+                <div class="review-text">
+                    "Celebrated our anniversary here and it was perfect. Authentic flavors, excellent food, and attentive staff. Highly recommend!"
+                </div>
+            </div>
+
+            <!-- Review 5 -->
+            <div class="review">
+                <div class="review-header">
+                    <div class="review-name">Meera Joshi</div>
+                    <div class="review-rating">★★★★☆</div>
+                </div>
+                <div class="review-text">
+                    "Great dal tadka and the chole bhature is amazing. Good portion sizes and friendly service. Will visit again soon!"
+                </div>
+            </div>
+
+            <!-- Review 6 -->
+            <div class="review">
+                <div class="review-header">
+                    <div class="review-name">Arjun Kumar</div>
+                    <div class="review-rating">★★★★★</div>
+                </div>
+                <div class="review-text">
+                    "Outstanding food quality! The spices are perfectly balanced and the presentation is beautiful. This restaurant never disappoints."
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer>
+        <p>&copy; 2024 Cafe Tadka. All rights reserved.</p>
+        <p>123 Main Street, City, State 12345 | Phone: (555) 123-4567</p>
+    </footer>
+
+    <!-- ============================================
+         JAVASCRIPT
+         ============================================ -->
+    <script>
+        // ============================================
+        // SMOOTH SCROLLING FOR NAVIGATION LINKS
+        // ============================================
+        // When a navigation link is clicked, smoothly scroll to that section
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault(); // Prevent default jump behavior
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth', // Smooth scroll animation
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ============================================
+        // SET MINIMUM DATE FOR RESERVATION FORM
+        // ============================================
+        // Prevents users from selecting past dates
+        const dateInput = document.getElementById('date');
+        const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+        dateInput.setAttribute('min', today);
+
+        // ============================================
+        // HANDLE RESERVATION FORM SUBMISSION
+        // ============================================
+        const reservationForm = document.getElementById('reservationForm');
+        const successMessage = document.getElementById('successMessage');
+
+        reservationForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form from submitting normally (reloading page)
+            
+            // In a real application, you would send this data to a server
+            // For now, we just log it to the console
+            console.log('Reservation submitted');
+
+            // Show success message
+            successMessage.style.display = 'block';
+            
+            // Reset the form to clear all fields
+            reservationForm.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 5000);
+
+            // Scroll to success message so user can see it
+            successMessage.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'nearest' 
+            });
+        });
+    </script>
+</body>
+</html>
